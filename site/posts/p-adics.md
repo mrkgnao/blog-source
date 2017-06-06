@@ -2,7 +2,7 @@
 title: Constructing the field of p-adic numbers
 author: Lewis Carroll
 description: "This is a short summary of what I recently learned about \\(p\\)-adic numbers: elements of a very interesting kind of field that one can obtain from \\(\\Bbb Q\\), which have fascinating properties and are very useful in number theory. Throughout this piece, \\(p\\) is a prime."
-tags: number-theory
+tags: [number-theory]
 date: 2016-12-23
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: What is a prime ideal?
 permalink: ideals-and-prime-ideals
-tags: background, commutative-algebra
+tags: [background, commutative-algebra]
 hide: true
 subtitle: This is a bit of background on ideals, leading up to a somewhat-motivated definition of a prime ideal, that I wrote for <a href="/schemes-i/">part 1</a> of my <a href="/schemes/">schemes sequence</a>.
 date: 2016-08-24

@@ -3,7 +3,7 @@ layout: post
 title: Ideals-as-points, and sheaves
 permalink: schemes-i
 date: 2016-12-14
-tags: schemes, series, sheaves
+tags: [schemes, series, sheaves]
 ---
 
 In this post, which is the first one in my [schemes sequence](/schemes/), we look at why schemes matter, and then go on to define the sets underlying affine schemes, which are the "building blocks" that schemes are made out of. We then talk about sheaves, which are a powerful way to keep track of functions that are defined on parts of a geometric space and use "local knowledge" to prove global things and vice versa.
