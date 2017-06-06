@@ -2,50 +2,82 @@
 {-# LANGUAGE OverloadedStrings     #-}
 module Main where
 
+import           Data.Text           (Text)
 import qualified Data.Text           as T
 
 import           Text.Mustache       ((~>))
 import qualified Text.Mustache       as MT
 import qualified Text.Mustache.Types as MT
 
-import           SitePipe
+import           Protolede
+import           SitePipe            hiding ((&))
 
-main :: IO ()
-main = siteWithGlobals templateFuncs $ do
-  -- Load all the posts from site/posts/
-  posts <- resourceLoader markdownReader ["posts/*.md"]
-  -- getTags will return a list of all tags from the posts,
-  -- each tag has a 'tag' and a 'posts' property
-  let tags = getTags makeTagUrl posts
-      -- Create an object with the needed context for a table of contents
-      indexContext :: Value
-      indexContext = object [ "posts" .= posts
-                            , "tags" .= tags
-                            , "url" .= ("/index.html" :: String)
-                            ]
-      rssContext :: Value
-      rssContext = object [ "posts" .= posts
-                          , "domain" .= ("http://chrispenner.ca" :: String)
-                          , "url" .= ("/rss.xml" :: String)
-                          ]
+(.=:) :: KeyValue kv => Text -> Text -> kv
+a .=: b = a .= b
 
-  -- Render index page, posts and tags respectively
-  writeTemplate "templates/index.html" [indexContext]
-  writeTemplate "templates/post.html" posts
-  writeTemplate "templates/tag.html" tags
-  writeTemplate "templates/rss.xml" [rssContext]
+addReadingTime :: Value -> Value
+addReadingTime post = post & _Object . at "readingTime" .~ Just (String readingTime)
+    where
+      content :: Text
+      content = post ^. key "content" . _String
+
+      readingTime :: Text
+      readingTime = tshow (round $ length (T.words content) / 60) <> " min"
+
+-- | Creates an index.html page from the template.
+createIndex :: [Value] -> [Value] -> SiteM ()
+createIndex posts tags = writeTemplate "templates/index.html" [indexContext]
+  where
+    indexContext =
+      object ["posts" .= posts, "tags" .= tags, "url" .=: "/index.html"]
+
+-- | Creates an RSS feed.
+createRssFeed :: [Value] -> SiteM ()
+createRssFeed posts = writeTemplate "templates/rss.xml" [rssContext]
+  where
+    rssContext =
+      object
+        [ "posts" .= posts
+        , "domain" .=: "http://mrkgnao.github.io"
+        , "url" .=: "/rss.xml"
+        ]
+
+-- | Render the posts from the templates.
+createPosts :: [Value] -> SiteM ()
+createPosts = writeTemplate "templates/post.html"
+
+-- | Render individual tag pages.
+createTags :: [Value] -> SiteM ()
+createTags = writeTemplate "templates/tags.html"
+
+
+siteDef :: SiteM ()
+siteDef = do
+  postsRaw <- resourceLoader markdownReader ["posts/*.md"]
+
+  let posts = postsRaw <&> addReadingTime
+      tags = getTags (stringify makeTagUrl) posts
+
+  createIndex posts tags
+  createPosts posts
+  createTags tags
+  createRssFeed posts
+
   staticAssets
 
--- | We can provide a list of functions to be availabe in our mustache templates
+main :: IO ()
+main = siteWithGlobals templateFuncs siteDef
+
+-- | List of functions to be available in Mustache templates.
 templateFuncs :: MT.Value
 templateFuncs = MT.object
-  [ "tagUrl" ~> MT.overText (T.pack . makeTagUrl . T.unpack)
+  [ "tagUrl" ~> MT.overText makeTagUrl
   ]
 
-makeTagUrl :: String -> String
-makeTagUrl tagName = "/tags/" ++ tagName ++ ".html"
+makeTagUrl :: Text -> Text
+makeTagUrl tagName = "/tags/" <> tagName <> ".html"
 
--- | All the static assets can just be copied over from our site's source
+-- | Copy over static assets.
 staticAssets :: SiteM ()
 staticAssets = copyFiles
     [ "css/*.css"
