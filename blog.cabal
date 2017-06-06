@@ -1,10 +1,10 @@
 name:                blog
 version:             1.0.0
-description:         A simple blog using SitePipe
+description:         mrkgnao's blog
 homepage:            https://github.com/ChrisPenner/blog#readme
 license:             BSD3
-author:              Chris Penner
-maintainer:          christopher.penner@gmail.com
+author:              mrkgnao / Soham Chowdhury
+maintainer:          chow.soham@gmail.com
 copyright:           2017 Chris Penner
 category:            Web
 build-type:          Simple
@@ -14,10 +14,14 @@ cabal-version:       >=1.10
 executable build-site
   hs-source-dirs:      app
   main-is:             Main.hs
+  default-extensions:  NoImplicitPrelude
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base
                      , sitepipe >= 0.1.1
                      , containers
                      , mustache
                      , text
+                     , protolude
+                     , clay
   default-language:    Haskell2010
+  other-modules:       Protolede
