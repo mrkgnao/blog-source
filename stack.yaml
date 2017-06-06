@@ -1,8 +1,8 @@
 resolver: lts-8.16
 packages:
 - '.'
+- '../sitepipe'
 extra-deps:
 - mustache-2.2.3
-- sitepipe-0.1.1
 flags: {}
 extra-package-dbs: []
