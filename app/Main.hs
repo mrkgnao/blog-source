@@ -10,19 +10,10 @@ import qualified Text.Mustache       as MT
 import qualified Text.Mustache.Types as MT
 
 import           Protolede
-import           SitePipe            hiding ((&))
+import           SitePipe            hiding ((&), (</>))
 
 (.=:) :: KeyValue kv => Text -> Text -> kv
 a .=: b = a .= b
-
-addReadingTime :: Value -> Value
-addReadingTime post = post & _Object . at "readingTime" .~ Just (String readingTime)
-    where
-      content :: Text
-      content = post ^. key "content" . _String
-
-      readingTime :: Text
-      readingTime = tshow (round $ length (T.words content) / 60) <> " min"
 
 -- | Creates an index.html page from the template.
 createIndex :: [Value] -> [Value] -> SiteM ()
@@ -48,12 +39,20 @@ createPosts = writeTemplate "templates/post.html"
 
 -- | Render individual tag pages.
 createTags :: [Value] -> SiteM ()
-createTags = writeTemplate "templates/tags.html"
+createTags = writeTemplate "templates/tag.html"
 
+-- | Copy over static assets.
+copyAssets :: SiteM ()
+copyAssets =
+  copyFiles
+    [ "css/*.css"
+    , "js"
+    , "images"
+    ]
 
 siteDef :: SiteM ()
 siteDef = do
-  postsRaw <- resourceLoader markdownReader ["posts/*.md"]
+  postsRaw <- resourceLoader markdownReader ["posts/**/*.md"]
 
   let posts = postsRaw <&> addReadingTime
       tags = getTags (stringify makeTagUrl) posts
@@ -63,10 +62,18 @@ siteDef = do
   createTags tags
   createRssFeed posts
 
-  staticAssets
+  copyAssets
 
-main :: IO ()
-main = siteWithGlobals templateFuncs siteDef
+addReadingTime :: Value -> Value
+addReadingTime post =
+     post
+  & _Object
+  .  at "readingTime"
+  .~ Just (String readingTime)
+
+  where
+    content = post ^. key "content" . _String
+    readingTime = tshow (round (length (T.words content) / 60)) <> " min"
 
 -- | List of functions to be available in Mustache templates.
 templateFuncs :: MT.Value
@@ -75,12 +82,9 @@ templateFuncs = MT.object
   ]
 
 makeTagUrl :: Text -> Text
-makeTagUrl tagName = "/tags/" <> tagName <> ".html"
+makeTagUrl tagName
+   =  relative "tags"
+  </> tagName <> ".html"
 
--- | Copy over static assets.
-staticAssets :: SiteM ()
-staticAssets = copyFiles
-    [ "css/*.css"
-    , "js"
-    , "images"
-    ]
+main :: IO ()
+main = siteWithGlobals templateFuncs siteDef
