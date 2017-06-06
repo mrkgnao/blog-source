@@ -1,3 +1,4 @@
+{-# LANGUAGE OverloadedStrings #-}
 module Protolede
   ( module X
   , String
@@ -5,6 +6,8 @@ module Protolede
   , length
   , tshow
   , stringify
+  , (</>)
+  , relative
   ) where
 
 import           Protolude as X hiding (length)
@@ -23,3 +26,11 @@ tshow = T.pack . show
 
 stringify :: (Text -> Text) -> String -> String
 stringify f = T.unpack . f . T.pack
+
+infixr 6 </>
+
+(</>) :: Text -> Text -> Text
+a </> b = a <> "/" <> b
+
+relative :: Text -> Text
+relative url = "/" <> url
