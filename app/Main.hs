@@ -16,11 +16,11 @@ import           SitePipe            hiding ((&), (</>))
 a .=: b = a .= b
 
 -- | Creates an index.html page from the template.
-createIndex :: [Value] -> [Value] -> SiteM ()
-createIndex posts tags = writeTemplate "templates/front-page.mustache" [indexContext]
+createIndex :: [Value] -> [Value] -> [Value] -> SiteM ()
+createIndex posts drafts tags = writeTemplate "templates/front-page.mustache" [indexContext]
   where
     indexContext =
-      object ["posts" .= posts, "tags" .= tags, "url" .=: "/index.html"]
+      object ["posts" .= posts, "drafts" .= drafts, "tags" .= tags, "url" .=: "/index.html"]
 
 -- | Creates an RSS feed.
 createRssFeed :: [Value] -> SiteM ()
@@ -59,12 +59,16 @@ copyAssets =
 siteDef :: SiteM ()
 siteDef = do
   postsRaw <- resourceLoaderPretty markdownReader ["posts/**/*.md"]
+  drafts <- resourceLoaderPretty markdownReader ["drafts/**/*.md"]
 
   let posts = postsRaw <&> addReadingTime
-      tags = getTags (stringify makeTagUrl) posts
+      tags = getTags (stringify makeTagUrl) (posts <> drafts)
 
-  createIndex posts tags
+  createIndex posts drafts tags
+
   createPosts posts
+  createPosts drafts
+
   createTags tags
   createRssFeed posts
 
