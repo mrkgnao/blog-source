@@ -28,15 +28,6 @@ After some motivation for schemes, this is the first part of the definition of a
 <!-- ### Part 2: The topology on an affine scheme -->
 
 <!-- ### Part 3: The structure sheaf of an affine scheme -->
-<pre class="code fullwidth">
-;; Some code examples in Clojure. This is a comment.
-
-;; applying a function to every item in the collection
-(map tufte-css blog-posts)
-;;;; if unfamiliar, see http://www.lispcast.com/annotated-map 
-</pre>
-
-
 
 ## Background
 
