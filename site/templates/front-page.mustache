@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head profile="http://www.w3.org/2005/10/profile">
+    {{>templates/meta.html}}
+    <title>The Good, The Bad, and The Ramified</title>
+    <link rel="alternative" type="application/rss+xml" title="Chris Penner RSS Feed" href="/feed" />
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" href="/css/tufte.css"> {{>templates/mathjax.html}}
+</head>
+
+<body>
+
+    <article id="page">
+        {{>templates/nav.html}}
+        <h1>Soham Chowdhury</h1>
+        <!-- <p><label for="mn-demo" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-demo" class="margin-toggle"/><span class="marginnote"><img src="/images/avatar-crop.jpg"></img></span>I'm a student of mathematics learning to coherently speak arithmetic geometry and number theory, a functional programmer with an interest in expressive type systems, and an enthusiast of unexplained analogies and the endless unfamiliar. -->
+        <p>I'm a student of mathematics learning to coherently speak arithmetic geometry and number theory, a functional programmer with an interest in expressive type systems and homotopy type theory, and an enthusiast of unexplained analogies and the endless unfamiliar.
+        </p>
+
+        <p>I'm running a series of posts (read <em>lab journal</em>) on algebraic geometry, called my <a href="/posts/so-what-are-schemes/"><em>Schemes</em> sequence</a></em>. These loosely follow Ravi Vakil's notes for <a href="https://math216.wordpress.com/">Math 216</a>.</p>
+
+        <p>
+            I contribute to open-source software on <a href="https://github.com/mrkgnao">GitHub</a>, in addition to maintaining a few trifling projects of my own there.
+        </p>
+
+        <p>
+            <a href="/about/">About me</a> &middot;
+            <a href="/colophon/">Colophon</a> &middot;
+            <a href="/rss.xml">RSS feed</a>
+        </p>
+
+
+        <h2>Articles</h2>
+        {{>templates/post-list.html}}
+
+    </article>
+
+    <!-- {{>templates/footer.html}} -->
+</body>
+
+</html>
