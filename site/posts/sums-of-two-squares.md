@@ -1,7 +1,7 @@
 ---
 title: Fermat's Christmas theorem
 subtitle: When is a prime number a sum of two squares?
-date: 2017-06-05
+date: 2017-06-07
 tags: [number-theory, algebraic-number-theory]
 categories: [math.NT]
 ---
