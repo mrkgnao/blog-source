@@ -1,3 +1,4 @@
+<h2>Articles</h2>
 {{#posts}}
 <p>
     <a href="{{url}}">{{title}}</a> (<em>{{date}}</em>)
@@ -7,3 +8,15 @@
     </blockquote>
 </p>
 {{/posts}}
+
+
+<h2>Drafts</h2>
+{{#drafts}}
+<p>
+    <a href="{{url}}">{{title}}</a> (<em>{{date}}</em>)
+
+    <blockquote>
+        {{{blurb}}}
+    </blockquote>
+</p>
+{{/drafts}}
