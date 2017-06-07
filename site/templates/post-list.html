@@ -1,7 +1,9 @@
-<ul>
-    {{#posts}}
-        <li>
-            <a href="{{url}}">{{title}} <span class="date">{{date}}</span> </a>
-        </li>
-    {{/posts}}
-</ul>
+{{#posts}}
+<p>
+    <a href="{{url}}">{{title}}</a> (<em>{{date}}</em>)
+
+    <!-- <blockquote> -->
+    <!-- {{{blurb}}} -->
+    <!-- </blockquote> -->
+</p>
+{{/posts}}

@@ -17,7 +17,7 @@ a .=: b = a .= b
 
 -- | Creates an index.html page from the template.
 createIndex :: [Value] -> [Value] -> SiteM ()
-createIndex posts tags = writeTemplate "templates/index.html" [indexContext]
+createIndex posts tags = writeTemplate "templates/front-page.mustache" [indexContext]
   where
     indexContext =
       object ["posts" .= posts, "tags" .= tags, "url" .=: "/index.html"]
@@ -33,6 +33,12 @@ createRssFeed posts = writeTemplate "templates/rss.xml" [rssContext]
         , "url" .=: "/rss.xml"
         ]
 
+-- | Creates an index.html page from the template.
+createStaticPages :: SiteM ()
+createStaticPages = do
+  writeTemplate "templates/about.html" [object ["url" .=: "/about/index.html"]]
+  writeTemplate "templates/colophon.html" [object ["url" .=: "/colophon/index.html"]]
+
 -- | Render the posts from the templates.
 createPosts :: [Value] -> SiteM ()
 createPosts = writeTemplate "templates/post.html"
@@ -45,14 +51,14 @@ createTags = writeTemplate "templates/tag.html"
 copyAssets :: SiteM ()
 copyAssets =
   copyFiles
-    [ "css/*.css"
+    [ "css"
     , "js"
     , "images"
     ]
 
 siteDef :: SiteM ()
 siteDef = do
-  postsRaw <- resourceLoader markdownReader ["posts/**/*.md"]
+  postsRaw <- resourceLoaderPretty markdownReader ["posts/**/*.md"]
 
   let posts = postsRaw <&> addReadingTime
       tags = getTags (stringify makeTagUrl) posts
@@ -62,6 +68,7 @@ siteDef = do
   createTags tags
   createRssFeed posts
 
+  createStaticPages
   copyAssets
 
 addReadingTime :: Value -> Value
@@ -84,7 +91,11 @@ templateFuncs = MT.object
 makeTagUrl :: Text -> Text
 makeTagUrl tagName
    =  relative "tags"
-  </> tagName <> ".html"
+  </> tagName </> "index.html"
+
+makeTagUrlPretty :: Text -> Text
+makeTagUrlPretty tagName
+   =  relative "tags" </> tagName
 
 main :: IO ()
 main = siteWithGlobals templateFuncs siteDef

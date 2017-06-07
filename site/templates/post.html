@@ -2,64 +2,57 @@
 <html lang="en">
 
 <head profile="http://www.w3.org/2005/10/profile">
-    <meta charset="UTF-8">
-    <meta name="description" content="The Personal blog and musings of Chris Penner, a designer, developer and future opsimath.">
-    <meta name="author" content="Chris Penner">
-    <meta name=viewport content="width=device-width, initial-scale=1"> {{>templates/meta-data.html}}
+    {{>templates/meta.html}}
+    {{>templates/meta-data.html}}
+
     <title>{{title}}</title>
-    <link rel="alternate" type="application/atom+xml" title="Chris Penner FP" href="/atom.xml" />
+    <link rel="alternate" type="application/atom+xml" title="The Good, The Bad, and the Ramified" href="/rss.xml" />
     <link rel="icon" type="image/png" href="/images/favicon.png">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/tufte.css">
+
+    {{>templates/mathjax.html}}
 </head>
 
 <body>
+    {{>templates/nav.html}}
+
     <header>
-        <div id="theme-button">DAY</div>
+        <h1 class="title">
+            {{title}}
+        </h1>
     </header>
+    <!-- <br> {{#image}} -->
+    <!-- <img class="post-image" src="/images/{{image}}"> {{/image}} -->
+    <!-- <br> {{readingTime}} -->
+    <!-- <br> {{#author}} -->
+    <!-- <p class="subtitle">by {{author}}</p> {{/author}} -->
+    <p class="subtitle">{{{subtitle}}}</p>
+    <p class="">{{{description}}}</p>
+    <span class="date">published <em>{{date}}</em></span>
+    <br>
+    <span class="tags">
+        tagged
+        {{#tags}}
+        <a class="tag" href="{{#tagUrl}}{{.}}{{/tagUrl}}"><em>{{.}}</em></a>
+        {{/tags}}
+    </span>
+    <article class="post">
+        {{#image}}
+        <figure class="fullwidth">
+            <img src="/images/{{image}}"></img>
+            {{#image-desc}}
+            <label>{{{image-desc}}}</label>
+            {{/image-desc}}
+        </figure>
+        {{/image}}
 
-    <div id="page">
-        <div class="wrapper">
-            <div class="masthead">
-                <span class="title">
-                {{title}}
-                </span>
-                <br> {{#image}}
-                <img class="post-image" src="/images/{{image}}"> {{/image}}
-                <br> {{readingTime}}
-                <br> {{#author}}
-                <span class="byline">by {{author}}</span> {{/author}}
-                <br>
-                <span class="date">{{date}}</span>
-                <br>
-                <div class="metadata">
-                    <br>
-                    <span class="tags">
-                    Tags<br>
-                    {{#tags}}
-                    <a class="tag" href="{{#tagUrl}}{{.}}{{/tagUrl}}">{{.}}</a>
-                    {{/tags}}
-                </span>
-                </div>
-            </div>
-        </div>
-        <article class="post">
-            {{{content}}}
-
-            <br>
-            <br>
-
-        </article>
+        {{{content}}}
+    </article>
 
     </div>
 
-    <footer>
-        &copy; 2014-2017 Chris Penner - <a href="/rss.xml">Feed</a>
-    </footer>
-
-    <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-    <script src="/js/main.min.js"></script>
+    {{>templates/footer.html}}
 </body>
+
 
 </html>
