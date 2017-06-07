@@ -158,7 +158,7 @@ trouble is so that we could state this fact!
 
 ## \\({\\mathbf Z}[i]\\) is a UFD
 
-The function \\(\\nu: {\\mathbf Z}[i]\\to{\\mathbf Z}gt\\) defined by
+The function \\(\\nu: {\\mathbf Z}[i]\\to{\\mathbf Z}^{\\geq 0}\\) defined by 
 
 \\[ \\nu(a + ib) = a^2 + b^2 = | a + ib |^2 \\]
 
