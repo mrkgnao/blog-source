@@ -1,23 +1,30 @@
 ---
 title: Fermat's Christmas theorem
 subtitle: When is a prime number a sum of two squares?
+blurb: When is a prime number a sum of two squares?
 date: 2017-06-07
 tags: [number-theory, algebraic-number-theory]
 categories: [math.NT]
 ---
+
+
+
 \\[ \\DeclareMathOperator{Mod}{mod} \\]
-Does the equation
+Does the equation<label for="mn-demo" class="margin-toggle">&#8853;</label>
+<input type="checkbox" id="mn-demo" class="margin-toggle"/>
+<span class="marginnote">This post is yet another from Ye Olde Days: I found a stray \\(\\TeX\\) file in an old `/home` folder. I wrote it for a friend at Canada/USA Mathcamp.</span></span>
 
-\\[ p = a ^ 2 + b ^ 2, \\; p \\text{ prime} \\]
 
-have solutions with integer \\(a\\) and \\(b\\)?
+\\[ \\begin{align}p = a ^ 2 + b ^ 2 &&(p \\text{ prime})\\end{align} \\]
+
+have nontrivial solutions with integer \\(a\\) and \\(b\\)?
 
 One start is to look at the equation mod \\(4\\): squares are always either \\(0\\) or 
 \\(1\\) modulo \\(4\\), so \\(p\\) can only be \\(1\\) mod \\(4\\).<label for="sn-demo" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-demo" class="margin-toggle"/><span class=sidenote>\\(0\\) and \\(2\\) are, uh, not really possibilities, except in the case \\(2 = 1^2 + 1^2\\).</span> Keeping this in mind, we restrict our attention to primes \\(\\equiv 1\\Mod 4\\).
 
 We notice that a nontrivial "factorization" of \\(p\\) of the form
 
-\\[p=(a+ib)(a-ib)\\;(a, b\\in{\\mathbf Q})\\]
+\\[\\begin{align}p=(a+ib)(a-ib) &&a, b\\in{\\mathbf Q}\\end{align}\\]
 
 gives us an expression of the form we want, if we are willing to expand our
 notion of what factorization means beyond its usual meaning in \\({\\mathbf Z}\\).
@@ -25,7 +32,7 @@ In fact, the approach that we follow
 is to look at how different primes factor or "split" in the ring \\({\\mathbf Z}[i]\\),
 which is the ring of numbers of the form
 
-\\[ {\\mathbf Z}[i] = \{a+ib : a, b\\in{\\mathbf Z}\} \\]
+\\[ {\\mathbf Z}[i] = \\{a+ib : a, b\\in{\\mathbf Z}\\} \\]
 
 We will obtain a complete description of how integer primes split in this ring, the
 *ring of Gaussian integers*, and thus prove the following:
@@ -41,8 +48,9 @@ Notice that it can often be worthwhile to think of \\({\\mathbf Z}[i]\\) geometr
 subset of the complex plane corresponding to all the complex numbers with
 integer real and complex parts. This gives \\({\\mathbf Z}[i]\\) the structure of a (square)
 *lattice*, which has an obvious meaning that we will not work hard to
-rigorize for now. <!-- Low-effort picture: -->
+rigorize for now. 
 
+<!-- Low-effort picture: -->
 <!-- \\begin{tikzpicture} -->
 <!-- \\begin{scope} -->
 <!-- \\clip (-5,-5) rectangle (4cm,4cm); % Clips the picture... -->
@@ -71,8 +79,7 @@ First, we review a few definitions from ring theory.
 <!-- \\end{defn} -->
 
 <!-- \\begin{defn} -->
-  An element \\(r\\in R\\) is *irreducible* (irred if I'm lazy) if the only
-  way to write it as a product of elements is
+  An element \\(r\\in R\\) is *irreducible*<label for="sn-demo" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-demo" class="margin-toggle"/><span class=sidenote>*irred* if I'm lazy</span> if the only way to write it as a product of elements is
   \\[r=u\\cdot r_1\\]
   where \\(u\\) is a unit, and \\(r_1\\) is \\(u_1r\\) for some unit \\(u_1\\).
 <!-- \\end{defn} -->
