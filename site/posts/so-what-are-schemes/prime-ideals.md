@@ -1,5 +1,4 @@
 ---
-layout: post
 title: What is a prime ideal?
 permalink: ideals-and-prime-ideals
 tags: [background, commutative-algebra, abstract-algebra]
