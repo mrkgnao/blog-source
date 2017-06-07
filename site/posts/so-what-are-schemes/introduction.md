@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Ideals-as-points, and sheaves
+blurb: I cover affine schemes, the Zariski topology, and why these things make sense to study.
 permalink: schemes-i
 date: 2016-12-14
 tags: [schemes, series, sheaves]
@@ -26,7 +27,7 @@ A closed set is one whose complement is open. We can actually also define a topo
 
 These definitions are completely equivalent.
 
-One good example to keep in mind is the classical/Euclidean[^r2top] topology on \\(\\Bbb R^2\\), where open disks (like \\(x^2 + y^2 < 4\\)) are open sets (definitely not the *only* ones!) and closed disks (e.g. \\((x-2)^2 + y^2 \\leq 5\\)) are examples of closed sets. You can get all the other open sets from these by taking unions, intersections, and complements, as long as you follow the axioms above.
+One good example to keep in mind is the classical/Euclidean[^r2top] topology on \\(\\mathbf R^2\\), where open disks (like \\(x^2 + y^2 < 4\\)) are open sets (definitely not the *only* ones!) and closed disks (e.g. \\((x-2)^2 + y^2 \\leq 5\\)) are examples of closed sets. You can get all the other open sets from these by taking unions, intersections, and complements, as long as you follow the axioms above.
 
 ## Some philosophy
 
@@ -36,7 +37,7 @@ This is a major idea behind algebraic geometry: sometimes it pays to look at som
 
 "What continuous real-valued functions
 
-\\[f:T\\to\\R\\]
+\\[f:T\\to\{\\mathbf R}\\]
 
 can I define on the space, satisfying *xyz* (where *xyz* is some property)?"
 
@@ -46,9 +47,9 @@ This "indirect viewpoint" is the primary one adopted in algebraic geometry.
 
 <div class="bd-callout bd-callout-info"><h4>Slogan</h4><p>Instead of looking at a space, look at the (rings) of functions defined on its subsets.</p></div>
 
-Here is some motivation for what schemes are like, using some words we haven't defined here yet. You may have heard of differentiable or smooth manifolds: they are spaces that locally "look like" \\(\\R^n\\). For instance, a sphere looks like \\(\\R^2\\) if you "zoom in" enough. And we understand \\(\\R^2\\) just fine, and \\(\\R^n\\) in general -- this is just multivariable calculus. The idea here is that we can work with complicated spaces as long as, "locally", they look like things we understand.
+Here is some motivation for what schemes are like, using some words we haven't defined here yet. You may have heard of differentiable or smooth manifolds: they are spaces that locally "look like" \\(\{\\mathbf R}^n\\). For instance, a sphere looks like \\(\{\\mathbf R}^2\\) if you "zoom in" enough. And we understand \\(\{\\mathbf R}^2\\) just fine, and \\(\{\\mathbf R}^n\\) in general -- this is just multivariable calculus. The idea here is that we can work with complicated spaces as long as, "locally", they look like things we understand.
 
-<div class="bd-callout bd-callout-info"><h4>Cop-out definition</h4><p>A scheme is defined as a "locally ringed space" (which we haven't defined yet) that is locally isomorphic to an *affine scheme*.</p></div>
+<blockquote><span style="font-variant: small-caps;">Cop-out definition</span><p>A scheme is a "locally ringed space" that is locally isomorphic to an *affine scheme*.</p></blockquote>
 
 That was a lot of words we haven't defined, but it seems like understanding what affine schemes are might be the first step toward grokking schemes.
 
@@ -56,7 +57,7 @@ That was a lot of words we haven't defined, but it seems like understanding what
 
 This section assumes you know some ring theory, at least enough to know what ideals are. See [this post](/ideals-and-prime-ideals/) for all the background you'll need.
 
-Consider a ring \\(R\\), and think about its prime ideals. You can mentally set \\(R = \\Z\\) or \\(\\C[x]\\) if you wish.
+Consider a ring \\(R\\), and think about its prime ideals. You can mentally set \\(R = \{\\mathbf Z}\\) or \\(\{\\mathbf C}[x]\\) if you wish.
 
 <div class="bd-callout bd-callout-info"><h4>Definition</h4><p>The prime ideals of \\(R\\) form a set called \\(\\Spec R\\).</p></div>
 
@@ -69,7 +70,7 @@ Yes. Let \\(f\\in R\\) (look at how our notation is evolving!) be a "regular fun
 
 Two examples, and all will be clear.
 
-* Consider \\(7\\in\\Z\\). What is its value at the point \\([(2)]\\) of \\(\\specz\\)? It's \\(7\\Mod 2\\), or, equivalently, the equivalence class \\([7]\\in \\Z/2\\Z\\)[^reddit-fix-2].
+* Consider \\(7\\in\{\\mathbf Z}\\). What is its value at the point \\([(2)]\\) of \\(\\specz\\)? It's \\(7\\Mod 2\\), or, equivalently, the equivalence class \\([7]\\in \{\\mathbf Z}/2\{\\mathbf Z}\\)[^reddit-fix-2].
 * (Vakil.[^vakil-1]) The value of the function
 
 \\[x^2-5x+7\\]
@@ -82,7 +83,7 @@ Okay, now we have some geometry. Let's look at some functions on these affine sc
 
 \\[f(z) = \\frac{z^2-z+1}{z-3}\\]
 
-has domain \\(\\Bbb C\\setminus\\{3\\}\\)[^reddit-fix-2].
+has domain \\(\\mathbf C\\setminus\\{3\\}\\)[^reddit-fix-2].
 
 ### A first step: motivating presheaves
 
@@ -92,9 +93,9 @@ Vaguely, we want to attach some data to every open set \\(U\\) of our topologica
 
 Given such a rule \\(\\sff\\), for every open set \\(U\\) in our space, we want some algebraic object \\(\\sff(U)\\). We call these the *sections* of \\(\\sff\\) *over \\(U\\)*.
 
-If you need an example to hold on to, think of the "rule" that eats an open set \\(U\\subset \\R^2\\), say, and spits out the set (actually a ring) of differentiable functions
+If you need an example to hold on to, think of the "rule" that eats an open set \\(U\\subset \{\\mathbf R}^2\\), say, and spits out the set (actually a ring) of differentiable functions
 
-\\[C^1(U) := \\{f:U\\to\\R:f \\text{ differentiable everywhere on } U\\}\\]
+\\[C^1(U) := \\{f:U\\to\{\\mathbf R}:f \\text{ differentiable everywhere on } U\\}\\]
 
 What properties, intuitively, would you want these assigments of ... things to open sets to satisfy? Well, I'll now do the thing where I magically wave my hands and exhibit a list. I think, however, that they will appear well-motivated. Any rule \\(\\sff\\) satisfying these properties is what is called a *presheaf*:
 
@@ -119,8 +120,11 @@ If you've nodded your head at each of these conditions, congratulations, you bot
 
 If \\(\\sff(U)\\) is a ring, we say that \\(\\sff\\) is a *presheaf of rings*. It shouldn't be too hard to understand what sheaves of sets, groups, rings, and so on are.
 
-#### Interlude: A more abstract perspective on presheaves
-*(This requires a tiny bit of category theory. I will probably write that up sometime soon.)*
+## Interlude 
+
+<p class=subtitle>A more abstract perspective on presheaves</p>
+
+(This requires a tiny bit of category theory. I will probably write that up sometime soon.)
 
 Consider the category of open sets of \\(X = \\Spec R\\). This is the category \\(\\open X\\) whose objects are the open sets of \\(R\\), and where the only morphisms are the inclusions of smaller open sets into bigger ones. That is, for every inclusion \\(U\\subset V\\), we have a morphism
 
@@ -128,16 +132,16 @@ Consider the category of open sets of \\(X = \\Spec R\\). This is the category \
 
 in the category \\(\\open X\\).
 
-<div class="bd-callout bd-callout-info"><h4>Alternative definition</h4><p>For \\(\\CC\\) some category (say the category of rings, \\(\\Ring\\)), a *\\(\\CC\\)-valued presheaf* is a functor</p>
+<div class="bd-callout bd-callout-info"><h4>Alternative definition</h4><p>For \\(\{\\mathbf C}C\\) some category (say the category of rings, \\(\{\\mathbf R}ing\\)), a *\\(\{\\mathbf C}C\\)-valued presheaf* is a functor</p>
 
-\\[\\sff: \\opp{\\open X}\\to\\CC,\\]
+\\[\\sff: \\opp{\\open X}\\to\{\\mathbf C}C,\\]
 
-that is, a contravariant functor from \\(\\open X\\) to \\(\\CC\\).
+that is, a contravariant functor from \\(\\open X\\) to \\(\{\\mathbf C}C\\).
 </div>
 
-For instance, a \\(\\Ring\\)-valued presheaf is just what we have called a presheaf of rings above. This definition is exactly equivalent to the one we made previously, since:
+For instance, a \\(\{\\mathbf R}ing\\)-valued presheaf is just what we have called a presheaf of rings above. This definition is exactly equivalent to the one we made previously, since:
 
-* the condition that a functor take identity morphisms to identities means that the identity morphisms in \\(\\open X\\) (inclusions of the form \\(U\\hookrightarrow U\\) in \\(\\open X\\)) are sent to identity morphisms \\(\\res U U = \\id _ U\\) in \\(\\CC\\).
+* the condition that a functor take identity morphisms to identities means that the identity morphisms in \\(\\open X\\) (inclusions of the form \\(U\\hookrightarrow U\\) in \\(\\open X\\)) are sent to identity morphisms \\(\\res U U = \\id _ U\\) in \\(\{\\mathbf C}C\\).
 * the condition that restrictions from a big open set to a medium and finally to a small open set make sense however it is done corresponds to the fact that functors respect composition of morphisms. To every diagram of the form
 
 \\[W\\overset j\\hookrightarrow V\\overset i\\hookrightarrow U\\]
@@ -146,7 +150,7 @@ in \\(\\open X\\), the presheaf \\(\\sff\\) associates a diagram
 
 \\[\\sff(U) \\overset{\\res U V}\\hookrightarrow \\sff(V) \\overset{\\res V W}\\hookrightarrow W\\]
 
-in \\(\\CC\\), which commutes. (TODO: these should be commutative triangles!)
+in \\(\{\\mathbf C}C\\), which commutes. (TODO: these should be commutative triangles!)
 
 There is a way to extend this to the definition of a sheaf, and more[^sites].
 
