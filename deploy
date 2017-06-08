@@ -5,6 +5,8 @@ set -euo pipefail
 SHORT_COMMIT=$(git show | head -1 | cut -d' ' -f2)
 DIST_DIR=/tmp/blog-deploy
 
+rm -rf $DIST_DIR
+
 stack build --jobs 1 --fast
 stack exec build-site -- -o $DIST_DIR
 
