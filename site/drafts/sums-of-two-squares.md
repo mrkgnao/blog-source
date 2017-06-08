@@ -10,13 +10,16 @@ categories: [math.NT]
 
 
 \\[ \\DeclareMathOperator{Mod}{mod} \\]
-Does the equation<label for="mn-demo" class="margin-toggle">&#8853;</label>
-<input type="checkbox" id="mn-demo" class="margin-toggle"/>
-<span class="marginnote">This post is yet another from Ye Olde Days: I found a stray \\(\\TeX\\) file in an old `/home` folder. I wrote it for a friend at Canada/USA Mathcamp.</span>
+Does the equation
 
 \\[ \\begin{align}p = a ^ 2 + b ^ 2 &&(p \\text{ prime})\\end{align} \\]
 
 have nontrivial solutions with integer \\(a\\) and \\(b\\)?
+
+*This post is yet another from Ye Olde Days: I found a stray \\(\\TeX\\) file in an old `/home` folder. I wrote this for a friend at Canada/USA Mathcamp, as part of my usual Number Theory Indoctrination™ Service.*
+
+<section>
+## Strategy: split!
 
 One start is to look at the equation mod \\(4\\): squares are always either \\(0\\) or 
 \\(1\\) modulo \\(4\\), so \\(p\\) can only be \\(1\\) mod \\(4\\).<label for="sn-demo" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-demo" class="margin-toggle"/><span class=sidenote>\\(0\\) and \\(2\\) are, uh, not really possibilities, except in the case \\(2 = 1^2 + 1^2\\).</span> Keeping this in mind, we restrict our attention to primes \\(\\equiv 1\\Mod 4\\).
@@ -40,7 +43,9 @@ We will obtain a complete description of how integer primes split in this ring, 
 <span style="font-variant:small-caps">Theorem (Fermat).</span><br>
 A prime number can be expressed as a sum of two integer squares iff it is congruent to \\(1\\) mod \\(4\\).
 </blockquote>
+</section>
 
+<section>
 ## \\({\\mathbf Z}[i]\\) as a lattice
 
 Notice that it can often be worthwhile to think of \\({\\mathbf Z}[i]\\) geometrically, as a
@@ -69,6 +74,8 @@ here we are looking at \\({\\mathbf Q}(i)\\) and its *ring of integers* \\({\\ma
 arguments using the "geometry of numbers", also called *Minkowski theory*, are very powerful, and will (for instance) enable us to prove the
 Dirichlet unit theorem.
 
+<section>
+</section>
 ## Preliminaries
 
 First, we review a few definitions from ring theory.
