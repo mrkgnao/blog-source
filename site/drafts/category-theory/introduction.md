@@ -57,7 +57,7 @@ An *identity morphism* is a map \\(\\id A : A \\to A\\) that acts as a *two-side
 
 \\[ \\begin{align}
 \\id X&\\trr f &= f\\\\
-g &\\trr \\id Y &= g
+g &\\trr \\id X &= g
 \\end{align}\\]
 
 Morphisms satisfying the first property are *left identities for composition*, and those satisfying the second are *right identities*, whence the phrase *two-sided identity*. (One-sided identities will be useful later, and the notion is a useful one to understand.) Usually, an identity morphism for \\(X\\) is one that does "nothing", often sending each piece of \\(X\\) to itself.
@@ -95,43 +95,3 @@ id x = x
 
 which is a polymorphic function that works for any `a`.
 
-## Kinds of morphisms
-
-Fix a category \\(\\rc\\) and objects \\(X, Y, Z \\in\\rc\\).
-
-An *endomorphism* of \\(X\\) is a morphism \\(X \\to X\\). The identity \\(\\id X\\) is always an endomorphism for any \\(X\\), but it is usually not the only one. The collection of endomorphisms of \\(X\\) is denoted \\(\\eend_{\\rc} X\\), and forms a subset of \\(\\cmoc X X\\). Here is a stupid endomorphism of the object `Int` of \\({\\sf Hask}\\):
-
-```haskell
-lol :: Int -> Int
-lol _ = 0
-```
-
-Given morphisms \\(f : B \\to E\\) and \\(g : E \\to B\\) such that
-
-\\[ \\begin{align}
-f \\trr g &= \\id B \\\\
-\\end{align}\\]
-
-we say \\(f\\) is a *section* of \\(g\\), and \\(g\\) is a *retraction* of \\(f\\).
-
-
-A morphism \\(f : X \\to Y\\) is *invertible* if there exists \\(g : Y \\to X\\) such that
-
-\\[ \\begin{align}
-f \\trr g &= \\id X \\\\
-g \\trr f &= \\id Y
-\\end{align}\\]
-
-<blockquote>
-<span style="font-variant:small-caps">Exercise.</span><br>
-Show that inverses are unique.<br>(Given \\(f\\), show that \\(g\\) is the only morphism that satisfies the properties above.)
-</blockquote>
-
-An invertible endomorphism is called an *automorphism*. The set of automorphisms of \\(X\\) is denoted \\(\\aut X\\). This is a subset of \\(\\eend X\\), but that is only part of the puzzle. First, notice that, by definition, every element of \\(\\aut X\\) has \\(\\id X\\) as an inverse for composition. In addition, one can verify that
-
-<blockquote>
-<span style="font-variant:small-caps">Exercise.</span><br>
-Given two automorphisms \\(\\alpha\\) and \\(\\beta\\) of \\(X\\), \\(\\alpha\\beta\\) is also an automorphism of \\(X\\).
-</blockquote>
-
-These two properties, together with the associativity of composition, imply that \\(\\aut X\\) is a *group*. If you have not met groups before, automorphism groups are as good a first example as any!
