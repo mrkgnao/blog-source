@@ -9,6 +9,8 @@ xypic compatibility to the latter. My formatting and alignment is somewhat idios
 and slightly motivated by avoiding syntax highlighting clashes between underscores with
 different meanings.
 
+The images may currently be invisible, but I assure you they exist and are *glorious*.
+
 ## A commutative square
 $$
 \begin{xy}
