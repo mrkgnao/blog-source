@@ -95,67 +95,15 @@ U \ar@/ _ /[ddr] _ y \ar@{.>}[dr]|{\langle x,y \rangle} \ar@/^/[drr]^x \\
 \end{xy}
 $$
 
-## Some kind of functor
-
-$$
-\begin{xy}
-\xymatrix@R=1pc{
-%%%
-\zeta 
-\ar@{-->} _ \theta [rd] 
-\ar@/^/^\psi [rrd] \\ & 
-%%%
-\xi 
-\ar _ \phi [r] & 
-%%%
-\eta
-}
-\end{xy}
-$$
-
-$$
+```latex
 \begin{xy}
 \xymatrix{
-%%%
-\zeta 
-\ar _ \theta [r]
-\ar@/^1pc/[rr]^ {\theta \,\triangleright\,\phi} &
-%%%
-\xi 
-\ar _ \phi [r] & 
-%%%
-\eta
+U \ar@/ _ /[ddr] _ y \ar@{.>}[dr]|{\langle x,y \rangle} \ar@/^/[drr]^x \\
+ & X \times _ Z Y \ar[d]^q \ar[r] _ p & X \ar[d] _ f \\
+ & Y \ar[r]^g & Z
 }
 \end{xy}
-$$
-
-$$
-\begin{xy}
-\xymatrix@R=1pc{
-%%%
-\zeta 
-\ar@{|->} [dd] 
-\ar@{.>} _ \theta [rd] 
-\ar@/^/^\psi [rrd] \\ & 
-%%%
-\xi 
-\ar@{|->} [dd] 
-\ar _ \phi [r] & 
-%%%
-\eta 
-\ar@{|->} [dd] \\
-%%%
-P _ {F}\zeta 
-\ar _ t [rd] 
-\ar@/^/ [rrd]|!{[ru];[rd]}\hole \\ & 
-%%%
-P _ {F}\xi 
-\ar [r] & 
-%%%
-P _ {F}\eta
-}
-\end{xy}
-$$
+```
 
 ## The snake lemma
 
@@ -199,48 +147,161 @@ current position, and the second one is to the left of the `[dddll]`
 (which is the first \\(\\coker\\)).
 
 ```latex
-\newcommand\Ker{\mathrm{Ker}\,}
-\newcommand\Coker{\mathrm{Coker}\,}
+\newcommand\Ker{\mathrm{ker}\,}
+\newcommand\Coker{\mathrm{coker}\,}
 \begin{xy}
 \xymatrix {
   0 \ar@[red][r] 
   & {\Ker f} \ar@[red][r] 
   & {\Ker a} \ar@[red][r] \ar[d] 
   & {\Ker b} \ar@[red][r] \ar[d] 
-  %%% The big arrow
+  %%% The big arrow.
   & {\Ker c} \ar@[red]@`{[] + /r10pc/, [dddll] + /l10pc/}[dddll] \ar[d]
 \\
   &
-  & A \ar[r]^f \ar[d]^a 
-  & B \ar[r]   \ar[d]^b 
-  & C \ar[r]   \ar[d]^c 
+  & A _ 1 \ar[r]^f \ar[d]^a 
+  & B _ 1 \ar[r]   \ar[d]^b 
+  & C _ 1 \ar[r]   \ar[d]^c 
   & 0
 \\
-  & 0 \ar[r] 
-  & A' \ar[r]      \ar[d] 
-  & B' \ar[r]^{g'} \ar[d] 
-  & C' \ar[d]
+  & 0     \ar[r] 
+  & A _ 2 \ar[r]      \ar[d] 
+  & B _ 2 \ar[r]^g \ar[d] 
+  & C _ 2 \ar[d]
 \\
   &
-  & {\Coker a}  \ar@[red][r] 
-  & {\Coker b}  \ar@[red][r] 
-  & {\Coker c}  \ar@[red][r] 
-  & {\Coker g'} \ar@[red][r] 
+  & {\Coker a} \ar@[red][r] 
+  & {\Coker b} \ar@[red][r] 
+  & {\Coker c} \ar@[red][r] 
+  & {\Coker g} \ar@[red][r] 
   & 0
 }
 \end{xy}
 ```
 
-## The universal property of the kernel
+## 3D diagrams
+
+$$
+\begin{xy}
+\xymatrix@R=1pc{
+%%%
+\zeta 
+\ar@{|->} [dd] 
+\ar@{.>} _ \theta [rd] 
+\ar@/^/^\psi [rrd] \\ & 
+%%%
+\xi 
+\ar@{|->} [dd] 
+\ar _ \phi [r] & 
+%%%
+\eta 
+\ar@{|->} [dd] \\
+%%%
+P _ {F}\zeta 
+\ar _ t [rd] 
+\ar@/^/ [rrd]|!{[ru];[rd]}\hole \\ & 
+%%%
+P _ {F}\xi 
+\ar [r] & 
+%%%
+P _ {F}\eta
+}
+\end{xy}
+$$
+
+```latex
+\begin{xy}
+\xymatrix@R=1pc{
+%%%
+\zeta 
+\ar@{|->} [dd] 
+\ar@{.>} _ \theta [rd] 
+\ar@/^/^\psi [rrd] \\ & 
+%%%
+\xi 
+\ar@{|->} [dd] 
+\ar _ \phi [r] & 
+%%%
+\eta 
+\ar@{|->} [dd] \\
+%%%
+P _ {F}\zeta 
+\ar _ t [rd] 
+\ar@/^/ [rrd]|!{[ru];[rd]}\hole \\ & 
+%%%
+P _ {F}\xi 
+\ar [r] & 
+%%%
+P _ {F}\eta
+}
+\end{xy}
+```
+
+## Basic composition
+
+$$
+\begin{xy}
+\xymatrix@R=1pc{
+%%%
+\zeta 
+\ar@{-->} _ \theta [rd] 
+\ar@/^/^\psi [rrd] \\ & 
+%%%
+\xi 
+\ar _ \phi [r] & 
+%%%
+\eta
+}
+\end{xy}
+$$
+
+```latex
+\begin{xy}
+\xymatrix@R=1pc{
+%%%
+\zeta 
+\ar@{-->} _ \theta [rd] 
+\ar@/^/^\psi [rrd] \\ & 
+%%%
+\xi 
+\ar _ \phi [r] & 
+%%%
+\eta
+}
+\end{xy}
+```
 
 $$
 \begin{xy}
 \xymatrix{
-\mathcal R \ar[r]<2pt>^{r _ 1} \ar[r]<-2pt> _ {r _ 2} & S \ar[r]^q \ar[dr] _ f & S / \mathcal R \ar@{.>}[d]^{\bar f} \\
- & & T
+%%%
+\zeta 
+\ar _ \theta [r]
+\ar@/^1pc/[rr]^ {\theta \,\triangleright\,\phi} &
+%%%
+\xi 
+\ar _ \phi [r] & 
+%%%
+\eta
 }
 \end{xy}
 $$
+
+```latex
+\begin{xy}
+\xymatrix{
+%%%
+\zeta 
+\ar _ \theta [r]
+\ar@/^1pc/[rr]^ {\theta \,\triangleright\,\phi} &
+%%%
+\xi 
+\ar _ \phi [r] & 
+%%%
+\eta
+}
+\end{xy}
+```
 
 ## Newcommands for reuse
 
