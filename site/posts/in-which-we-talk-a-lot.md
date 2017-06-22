@@ -26,7 +26,7 @@ There's some other stuff I'm thinking about putting up over the next few months,
 * the Lenstra elliptic curve factorization method
 * basic, "real" analytic number theory, and using it to prove Chebyshev's theorem
 * singular homology
-* homotopy colimits and model categories 
+* homotopy colimits and model categories
 * Brauer groups
 * representation theory
 * de Rham cohomology, and just manifold theory, from a sheafy point of view
